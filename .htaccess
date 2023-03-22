@@ -1,0 +1,24 @@
+#apache htaccess file
+#enable htaccess with 
+#<Directory thisdir>
+#  ..
+#  AllowOverride All
+#</Directory>
+#set max-age and expires to 10 years (almost forever)
+#enable mod_header and mod_expires
+#with
+#sudo a2enmod headers
+#sudo a2enmod expires
+<IfModule mod_header.c>
+<FilesMatch ^>
+  Header set Cache-Control "max-age=315360000, public"
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  # Enable expirations
+  ExpiresActive On
+
+  # Default directive
+  ExpiresDefault "access plus 10 year"
+</IfModule>
