@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json.schemastore.org/web-manifest-combined.json",
+  "name":"Simple Offline Web App",
+  "short_name":"Off App",
+  "start_url":"./test.html",
+  "id":"ASimpleApp",
+  "scope":".",
+  "display":"standalone",
+  "description":"An offline PWA using browser caches (no service worker caches required)",
+  "icons":[{"src":"logo192.png","sizes":"192x192","purpose":"any"},{"src":"logo512.png","sizes":"512x512","purpose":"any"}]
+}

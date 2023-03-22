@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="test.webmanifest">
+
+  <title>Simple Offline Web Page</title>
+
+  <link href='logo192.png' rel='shortcut icon' id="favicon_element" />
+  <script src="simple.js"></script>
+</head>
+<body>
+  <p>Simple Offline Web Page (PWA) demonstrating the use of ordinary browser caches and pre fetching via fetch() (almost) without service worker</p>
+  <a href="test2.html">Click PAGE 2 when offline</a>
+</body>
+<script>
+let _isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var _isFirefox = typeof InstallTrigger !== 'undefined';
+console.log("isSafari:"+_isSafari+",isFirefox:"+_isFirefox);
+if (navigator && navigator.serviceWorker) {
+  if (_isSafari && _isFirefox) {
+    console.log("omit service worker (not needed)");
+  } else {
+    console.log("register service worker for edge and chrome (and the rest)");
+    navigator.serviceWorker.register('test_sw.js').then(function(reg) {
+      // registration worked
+      console.log('Registration succeeded. Scope:' + reg.scope + ",installing:"+reg.installing+",waiting:"+reg.waiting+",active:"+reg.active);
+    }).catch(function(error) {
+      // registration failed
+      console.warn('Registration failed with ' + error);
+    });
+  }
+} else {
+  console.log("no serviceWorker available");
+}
+</script>
+</html>
