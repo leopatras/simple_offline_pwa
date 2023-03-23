@@ -23,7 +23,7 @@ let _isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 var _isFirefox = typeof InstallTrigger !== 'undefined';
 console.log("isSafari:"+_isSafari+",isFirefox:"+_isFirefox);
 if (navigator && navigator.serviceWorker) {
-  if (_isSafari || _isFirefox) {
+  if (_isFirefox) {
     console.log("omit service worker (not needed)");
   } else {
     console.log("register service worker for edge and chrome (and the rest)");
